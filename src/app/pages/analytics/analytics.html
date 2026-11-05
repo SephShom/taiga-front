@@ -1,0 +1,126 @@
+<header tuiHeader class="page-header">
+  <div tuiTitle>
+    <div class="page-title">Analytics</div>
+    <div class="page-subtitle">Traffic and engagement overview for {{ today | date:'mediumDate' }}</div>
+  </div>
+  <div tuiAccessories>
+    <button tuiButton appearance="outline-grayscale" size="m">
+      <tui-icon icon="@tui.calendar" class="action-icon"></tui-icon>
+      <span>Date range</span>
+    </button>
+    <button tuiButton appearance="primary" size="m">
+      <tui-icon icon="@tui.export" class="action-icon"></tui-icon>
+      <span>Export CSV</span>
+    </button>
+  </div>
+</header>
+
+<!-- Metric cards with mini sparklines -->
+<div class="metrics-grid">
+  @for (metric of metrics(); track metric.title) {
+    <div class="metric-card" [style.--metric-color]="metric.color">
+      <div class="metric-body">
+        <div class="metric-info">
+          <div class="metric-title">{{ metric.title }}</div>
+          <div class="metric-value">{{ metric.value }}</div>
+          <div class="metric-sub">{{ metric.subtitle }}</div>
+        </div>
+        <div class="sparkline">
+          @for (point of metric.sparkline; track $index) {
+            <div
+              class="spark-bar"
+              [style.height.%]="barHeight(point, metric.sparkline)"
+              [style.background-color]="metric.color"
+            ></div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="content-grid">
+  <!-- Top pages -->
+  <div class="panel">
+    <header tuiHeader class="panel-header">
+      <div tuiTitle>
+        <div class="panel-title">Top pages</div>
+        <div class="panel-subtitle">Most visited pages this week</div>
+      </div>
+    </header>
+    <div class="list-wrap">
+      <table tuiTable class="pages-table">
+        <thead>
+          <tr>
+            <th tuiCell class="cell-name">Page</th>
+            <th tuiCell class="cell-views">Views</th>
+            <th tuiCell class="cell-change">Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (page of topPages(); track page.name) {
+            <tr>
+              <td tuiCell class="cell-name">{{ page.name }}</td>
+              <td tuiCell class="cell-views">{{ page.views }}k</td>
+              <td tuiCell class="cell-change">
+                <span class="change-pill" [class.up]="page.change >= 0" [class.down]="page.change < 0">
+                  {{ page.change > 0 ? '+' : '' }}{{ page.change }}%
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Chart placeholder / demo card -->
+  <div class="panel chart-panel">
+    <header tuiHeader class="panel-header">
+      <div tuiTitle>
+        <div class="panel-title">Revenue over time</div>
+        <div class="panel-subtitle">Last 12 months (demo)</div>
+      </div>
+    </header>
+    <div class="chart-wrap">
+      <svg class="demo-chart" viewBox="0 0 700 260" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:var(--tui-color-indigo-500, #6366f1);stop-opacity:0.45" />
+            <stop offset="100%" style="stop-color:var(--tui-color-indigo-500, #6366f1);stop-opacity:0" />
+          </linearGradient>
+        </defs>
+        <polyline
+          class="chart-area"
+          points="50,195 120,150 190,205 260,120 330,175 400,105 470,160 540,90 610,130 680,80"
+          fill="url(#grad1)"
+          stroke="none"
+        />
+        <polyline
+          class="chart-line"
+          points="50,195 120,150 190,205 260,120 330,175 400,105 470,160 540,90 610,130 680,80"
+          fill="none"
+          stroke="var(--tui-color-indigo-600, #4f46e5)"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        @for (pt of chartPoints(); track $index) {
+          <circle class="chart-dot" [attr.cx]="pt.x" [attr.cy]="pt.y" r="4" fill="var(--tui-color-indigo-600, #4f46e5)"></circle>
+        }
+        <g class="chart-axis">
+          @for (label of axisLabels(); track $index) {
+            <text
+              class="axis-label"
+              [attr.x]="axisX($index)"
+              y="245"
+              text-anchor="middle"
+              fill="var(--tui-text-muted)"
+              font-size="11"
+            >{{ label }}</text>
+          }
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>

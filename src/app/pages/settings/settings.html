@@ -1,0 +1,111 @@
+<header tuiHeader class="page-header">
+  <div tuiTitle>
+    <div class="page-title">Settings</div>
+    <div class="page-subtitle">Account preferences and application configuration</div>
+  </div>
+</header>
+
+<div tuiCardLarge appearance="floating" class="settings-card">
+  <div class="card-body">
+    <!-- Profile section -->
+    <section class="section">
+      <div class="section-header">
+        <tui-icon icon="@tui.user" class="section-icon"></tui-icon>
+        <div class="section-info">
+          <div class="section-title">Profile</div>
+          <div class="section-subtitle">Personal information</div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field">
+          <tui-textfield appearance="custom" size="m">
+            <label tuiLabel>Full name</label>
+            <input tuiInput [(ngModel)]="profile().name" placeholder="John Doe" />
+          </tui-textfield>
+        </div>
+        <div class="field">
+          <tui-textfield appearance="custom" size="m">
+            <label tuiLabel>Email address</label>
+            <input tuiInput type="email" [(ngModel)]="profile().email" placeholder="alex@example.com" />
+          </tui-textfield>
+        </div>
+        <div class="field">
+          <tui-textfield appearance="custom" size="m">
+            <label tuiLabel>Role</label>
+            <input tuiInput [(ngModel)]="profile().role" placeholder="Product Designer" />
+          </tui-textfield>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Preferences section -->
+    <section class="section">
+      <div class="section-header">
+        <tui-icon icon="@tui.setting" class="section-icon"></tui-icon>
+        <div class="section-info">
+          <div class="section-title">Preferences</div>
+          <div class="section-subtitle">App behaviour and display</div>
+        </div>
+      </div>
+      <div class="pref-grid">
+        <div class="pref-item">
+          <div class="pref-info">
+            <div class="pref-title">Dark mode</div>
+            <div class="pref-subtitle">Use a dark theme across the app</div>
+          </div>
+          <input type="checkbox" tuiSwitch [(ngModel)]="darkMode" size="m" />
+        </div>
+        <div class="pref-item">
+          <div class="pref-info">
+            <div class="pref-title">Newsletter</div>
+            <div class="pref-subtitle">Receive product updates by email</div>
+          </div>
+          <input type="checkbox" tuiSwitch [(ngModel)]="newsletter" size="m" />
+        </div>
+        <div class="pref-item">
+          <div class="pref-info">
+            <div class="pref-title">Push notifications</div>
+            <div class="pref-subtitle">Get notified about important events</div>
+          </div>
+          <input type="checkbox" tuiSwitch [(ngModel)]="notifications" size="m" />
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Regional section -->
+    <section class="section">
+      <div class="section-header">
+        <tui-icon icon="@tui.globe" class="section-icon"></tui-icon>
+        <div class="section-info">
+          <div class="section-title">Regional settings</div>
+          <div class="section-subtitle">Timezone and language</div>
+        </div>
+      </div>
+      <div class="form-grid cols-2">
+        <div class="field">
+          <tui-textfield appearance="custom" size="m" tuiChevron [stringify]="stringifyTz">
+            <label tuiLabel>Timezone</label>
+            <input placeholder="Select timezone" tuiSelect [(ngModel)]="profile().timezone" />
+            <tui-data-list-wrapper *tuiDropdown [items]="timezones()" />
+          </tui-textfield>
+        </div>
+        <div class="field">
+          <tui-textfield appearance="custom" size="m" tuiChevron [stringify]="stringifyLang">
+            <label tuiLabel>Language</label>
+            <input placeholder="Select language" tuiSelect [(ngModel)]="profile().language" />
+            <tui-data-list-wrapper *tuiDropdown [items]="languages()" />
+          </tui-textfield>
+        </div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button tuiButton appearance="outline-grayscale" size="m" (click)="reset()">Reset</button>
+      <button tuiButton appearance="primary" size="m" (click)="save()">Save changes</button>
+    </div>
+  </div>
+</div>

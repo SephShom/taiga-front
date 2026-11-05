@@ -1,0 +1,102 @@
+<header tuiHeader class="page-header">
+  <div tuiTitle>
+    <div class="page-title">Dashboard</div>
+    <div class="page-subtitle">Welcome back, {{ userName() }}. Here is what is happening today.</div>
+  </div>
+  <div tuiAccessories>
+    <button tuiButton appearance="primary" size="m">
+      <tui-icon icon="@tui.plus" class="action-icon"></tui-icon>
+      <span>Create</span>
+    </button>
+    <button tuiButton appearance="outline-grayscale" size="m">
+      <tui-icon icon="@tui.filter" class="action-icon"></tui-icon>
+      <span>Filters</span>
+    </button>
+  </div>
+</header>
+
+<!-- Stat cards -->
+<div class="stats-grid">
+  @for (stat of stats(); track stat.title) {
+    <div class="stat-card" [class]="stat.color ? '' : ''" [style.--stat-color]="stat.color">
+      <div class="stat-body">
+        <div class="stat-info">
+          <div class="stat-label">{{ stat.title }}</div>
+          <div class="stat-value">{{ stat.value }}</div>
+          <div class="stat-change" [class.positive]="stat.positive" [class.negative]="!stat.positive">
+            <tui-icon class="stat-change-icon" [icon]="stat.icon"></tui-icon>
+            <span>{{ stat.change }}</span>
+          </div>
+        </div>
+        <div class="stat-badge">
+          <tui-icon [icon]="stat.icon" class="stat-icon"></tui-icon>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="content-grid">
+  <!-- Quick actions -->
+  <div class="panel">
+    <header tuiHeader class="panel-header">
+      <div tuiTitle>
+        <div class="panel-title">Quick actions</div>
+        <div class="panel-subtitle">Common tasks</div>
+      </div>
+    </header>
+    <div class="actions-grid">
+      @for (action of quickActions(); track action.label) {
+        <button
+          class="action-btn"
+          [routerLink]="action.route"
+          routerLinkActive="active"
+        >
+          <tui-icon class="action-icon" [icon]="action.icon"></tui-icon>
+          <span class="action-label">{{ action.label }}</span>
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Recent activity -->
+  <div class="panel activity-panel">
+    <header tuiHeader class="panel-header">
+      <div tuiTitle>
+        <div class="panel-title">Recent activity</div>
+        <div class="panel-subtitle">Latest events across your workspace</div>
+      </div>
+    </header>
+    <div class="table-wrap">
+      <table tuiTable class="activity-table">
+        <thead>
+          <tr>
+            <th tuiCell class="cell-user">User</th>
+            <th tuiCell class="cell-action">Activity</th>
+            <th tuiCell class="cell-time">Time</th>
+            <th tuiCell class="cell-status">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of activities(); track item.id) {
+            <tr>
+              <td tuiCell class="cell-user">
+                <div tuiAvatar class="activity-avatar" size="xs">{{
+                  item.user | slice:0:1
+                }}</div>
+                <span class="user-name">{{ item.user }}</span>
+              </td>
+              <td tuiCell class="cell-action">{{ item.action }}</td>
+              <td tuiCell class="cell-time">{{ item.time }}</td>
+              <td tuiCell class="cell-status">
+                <span class="status-pill" [class]="'status-' + item.status">
+                  {{ statusLabel().get(item.status) }}
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

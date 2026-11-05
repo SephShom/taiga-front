@@ -1,0 +1,154 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: var(--tui-background-base);
+  border-bottom: 1px solid var(--tui-border-base);
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--tui-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  font-size: 0.9375rem;
+  color: var(--tui-text-secondary);
+  margin-top: 0.1875rem;
+}
+
+.settings-card {
+  max-width: 760px;
+  margin: 0 auto 1.5rem;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.section {
+  padding: 1.5rem;
+}
+
+.section:first-child {
+  padding-top: 1rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-icon {
+  --tui-icon-size: 1.25rem;
+  color: var(--tui-color-indigo-600, #4f46e5);
+  flex-shrink: 0;
+}
+
+.section-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--tui-text-primary);
+}
+
+.section-subtitle {
+  font-size: 0.875rem;
+  color: var(--tui-text-secondary);
+  margin-top: 0.1875rem;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--tui-border-base);
+  margin: 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.form-grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--tui-text-secondary);
+  margin-bottom: 0.375rem;
+}
+
+.pref-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.pref-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--tui-text-primary) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--tui-text-primary) 8%, transparent);
+}
+
+.pref-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.pref-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--tui-text-primary);
+}
+
+.pref-subtitle {
+  font-size: 0.8125rem;
+  color: var(--tui-text-secondary);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--tui-border-base);
+}
+
+@media (max-width: 640px) {
+  .form-grid,
+  .form-grid.cols-2 {
+    grid-template-columns: 1fr;
+  }
+  .settings-card {
+    margin: 0 0.5rem;
+  }
+  .section {
+    padding: 1rem;
+  }
+}

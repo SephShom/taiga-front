@@ -1,0 +1,243 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: var(--tui-background-base);
+  border-bottom: 1px solid var(--tui-border-base);
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--tui-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  font-size: 0.9375rem;
+  color: var(--tui-text-secondary);
+  margin-top: 0.1875rem;
+}
+
+.action-icon {
+  --tui-icon-size: 1.125rem;
+  margin-inline-end: 0.375rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.125rem 1.25rem;
+  border-radius: 1rem;
+  background: var(--tui-background-base);
+  border: 1px solid var(--tui-border-base);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--tui-text-primary) 6%, transparent);
+}
+
+.metric-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.metric-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metric-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--tui-text-secondary);
+}
+
+.metric-value {
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--tui-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.metric-sub {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--tui-color-emerald-600, #059669);
+}
+
+.sparkline {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 44px;
+  padding-top: 0.5rem;
+}
+
+.spark-bar {
+  width: 6px;
+  border-radius: 3px 3px 0 0;
+  background-color: var(--metric-color, var(--tui-color-indigo-500));
+  opacity: 0.85;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.5rem;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--tui-background-base);
+  border: 1px solid var(--tui-border-base);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--tui-text-primary) 6%, transparent);
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--tui-border-base);
+}
+
+.panel-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--tui-text-primary);
+}
+
+.panel-subtitle {
+  font-size: 0.875rem;
+  color: var(--tui-text-secondary);
+  margin-top: 0.1875rem;
+}
+
+.list-wrap {
+  padding: 1rem 1.25rem;
+}
+
+.pages-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pages-table thead tr {
+  border-bottom: 1px solid var(--tui-border-base);
+}
+
+.pages-table th tuiCell {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--tui-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 0.625rem;
+  padding-top: 0;
+  text-align: left;
+}
+
+.pages-table tbody tr {
+  border-bottom: 1px solid color-mix(in srgb, var(--tui-text-primary) 6%, transparent);
+}
+
+.pages-table td tuiCell {
+  font-size: 0.9375rem;
+  color: var(--tui-text-primary);
+  padding: 0.75rem 0;
+  vertical-align: middle;
+}
+
+.cell-name {
+  font-weight: 500;
+  color: var(--tui-text-primary);
+}
+
+.cell-views {
+  font-variant-numeric: tabular-nums;
+}
+
+.change-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1875rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.change-pill.up {
+  background: color-mix(in srgb, var(--tui-color-emerald-500) 10%, transparent);
+  color: var(--tui-color-emerald-600, #059669);
+}
+
+.change-pill.down {
+  background: color-mix(in srgb, var(--tui-color-rose-500) 10%, transparent);
+  color: var(--tui-color-rose-600, #dc2626);
+}
+
+.chart-panel {
+  min-width: 0;
+}
+
+.chart-wrap {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.demo-chart {
+  width: 100%;
+  height: 210px;
+  display: block;
+}
+
+.chart-area {
+  opacity: 0.9;
+}
+
+.chart-line {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-dot {
+  fill: var(--tui-color-indigo-600, #4f46e5);
+}
+
+.chart-axis {
+  fill: none;
+}
+
+.axis-label {
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  .page-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+  }
+  .page-header > div[tuiAccessories] {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,97 @@
+<header tuiHeader class="page-header">
+  <div tuiTitle>
+    <div class="page-title">Customers</div>
+    <div class="page-subtitle">Manage your customers and subscriptions</div>
+  </div>
+  <div tuiAccessories>
+    <button tuiButton appearance="primary" size="m">
+      <tui-icon icon="@tui.plus" class="action-icon"></tui-icon>
+      <span>Add customer</span>
+    </button>
+    <button tuiButton appearance="outline-grayscale" size="m">
+      <tui-icon icon="@tui.filter" class="action-icon"></tui-icon>
+      <span>Filters</span>
+    </button>
+  </div>
+</header>
+
+<div class="toolbar">
+  <tui-textfield appearance="custom" size="m">
+    <label tuiLabel>Search customers</label>
+    <input tuiInput [(ngModel)]="filter" placeholder="Name, email or ID" />
+    <tui-icon iconStart="@tui.search" class="search-icon"></tui-icon>
+  </tui-textfield>
+
+  <tui-textfield appearance="custom" size="m" tuiChevron [stringify]="stringifyStatus">
+    <label tuiLabel>Status</label>
+    <input placeholder="All" tuiSelect [(ngModel)]="statusFilter" />
+    <tui-data-list-wrapper *tuiDropdown [items]="statusOptions" />
+  </tui-textfield>
+</div>
+
+<div class="table-wrap">
+  <table tuiTable class="customers-table">
+    <thead>
+      <tr>
+        <th tuiCell class="cell-id">ID</th>
+        <th tuiCell class="cell-name">Customer</th>
+        <th tuiCell class="cell-email">Email</th>
+        <th tuiCell class="cell-plan">Plan</th>
+        <th tuiCell class="cell-status">Status</th>
+        <th tuiCell class="cell-spent">Lifetime</th>
+        <th tuiCell class="cell-joined">Joined</th>
+        <th tuiCell class="cell-actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (customer of filteredCustomers(); track customer.id) {
+        <tr class="customer-row">
+          <td tuiCell class="cell-id">{{ customer.id }}</td>
+          <td tuiCell class="cell-name">
+            <div tuiAvatar class="customer-avatar" size="xs">{{
+              customer.name | slice:0:1
+            }}</div>
+            <span class="customer-name">{{ customer.name }}</span>
+          </td>
+          <td tuiCell class="cell-email">{{ customer.email }}</td>
+          <td tuiCell class="cell-plan">
+            <span class="plan-pill" [class]="'plan-' + customer.plan.toLowerCase()">
+              {{ customer.plan }}
+            </span>
+          </td>
+          <td tuiCell class="cell-status">
+            <span class="status-pill" [class]="'status-' + customer.status">
+              {{ statusLabel.get(customer.status) }}
+            </span>
+          </td>
+          <td tuiCell class="cell-spent">{{ customer.spent }}</td>
+          <td tuiCell class="cell-joined">{{ customer.joined }}</td>
+          <td tuiCell class="cell-actions">
+            <button class="icon-btn" title="View">
+              <tui-icon icon="@tui.eye"></tui-icon>
+            </button>
+            <button class="icon-btn" title="Edit">
+              <tui-icon icon="@tui.pencil"></tui-icon>
+            </button>
+          </td>
+        </tr>
+      }
+      @if (filteredCustomers().length === 0) {
+        <tr>
+          <td tuiCell colspan="8" class="empty-cell">
+            <div class="empty-state">
+              <tui-icon icon="@tui.inbox" class="empty-icon"></tui-icon>
+              <div class="empty-title">No customers found</div>
+              <div class="empty-subtitle">Try adjusting your search or filter.</div>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="result-info">
+  Showing <strong>{{ filteredCustomers().length }}</strong> of
+  <strong>{{ customers().length }}</strong> customers
+</div>
