@@ -1,0 +1,19 @@
+{
+  "APP": {
+    "TITLE": "Taiga Front",
+    "WELCOME": "Welcome to {{app}}",
+    "LANGUAGE": "Language",
+    "LANGUAGE_EN": "English",
+    "LANGUAGE_ES": "Spanish",
+    "CHANGE_LANG": "Change language"
+  },
+  "HOME": {
+    "TITLE": "Home",
+    "DESCRIPTION": "This is the home page."
+  },
+  "COMMON": {
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "LOADING": "Loading..."
+  }
+}
